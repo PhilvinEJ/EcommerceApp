@@ -41,12 +41,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.black,
+                icon: Padding(
+                  padding: EdgeInsets.only(left: 18.0),
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
                 )),
           )),
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[800],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Top part of drawer
+            Column(
+              children: [
+                // Logo
+                DrawerHeader(
+                  margin: EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade800)),
+                  child: Image.asset(
+                    'lib/assets/images/e_com.png',
+                    width: 200.0,
+                  ),
+                ),
+
+                // List
+                ListTile(
+                  leading: Icon(Icons.home, color: Colors.white),
+                  title: Text(
+                    'Home',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+
+                ListTile(
+                  leading: Icon(Icons.info, color: Colors.white),
+                  title: Text(
+                    'About',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+
+            // Bottom part of drawer
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: ListTile(
+                leading: Icon(Icons.logout, color: Colors.red),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
