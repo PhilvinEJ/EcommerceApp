@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_files/components/bottom_nav_bar.dart';
 import 'package:project_files/screens/shop_screen.dart';
+import 'package:project_files/themes/colors.dart';
+import 'package:project_files/utils/nav_constants.dart';
 
 import '../utils/utils.dart';
 import 'cart_screen.dart';
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: Builder(
@@ -45,12 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(left: 18.0),
                   child: Icon(
                     Icons.menu,
-                    color: Colors.black,
+                    color: black,
                   ),
                 )),
           )),
       drawer: Drawer(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -61,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 DrawerHeader(
                   margin: EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade800)),
+                      border: Border.all(
+                          color: Theme.of(context).colorScheme.primary)),
                   child: Image.asset(
                     'lib/assets/images/e_com.png',
                     width: 200.0,
@@ -70,19 +73,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // List
                 ListTile(
-                  leading: Icon(Icons.home, color: Colors.white),
+                  leading: Icon(Icons.home,
+                      color: Theme.of(context).colorScheme.secondary),
                   title: Text(
                     'Home',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                 ),
 
                 ListTile(
-                  leading: Icon(Icons.info, color: Colors.white),
+                  leading: Icon(Icons.info,
+                      color: Theme.of(context).colorScheme.secondary),
                   title: Text(
                     'About',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary),
                   ),
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    Navigator.pushNamed(context, NavConstants.aboutScreen);
+                  },
                 ),
               ],
             ),
@@ -94,7 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: Icon(Icons.logout, color: Colors.red),
                 title: Text(
                   'Logout',
-                  style: TextStyle(color: Colors.white),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
             )

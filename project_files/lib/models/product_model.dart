@@ -1,10 +1,10 @@
-class ShoeModel {
+class ProductModel {
   final String name;
   final String price;
   final String imagePath;
   final String description;
 
-  ShoeModel({
+  ProductModel({
     required this.name,
     required this.price,
     required this.imagePath,

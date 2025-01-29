@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project_files/models/cart.dart';
+import 'package:project_files/models/providers/cart_provider.dart';
+import 'package:project_files/screens/about_screen.dart';
+import 'package:project_files/screens/cart_screen.dart';
+import 'package:project_files/screens/home_screen.dart';
 import 'package:project_files/screens/onboarding_screen.dart';
+import 'package:project_files/screens/shop_screen.dart';
+import 'package:project_files/themes/light_theme.dart';
+import 'package:project_files/utils/nav_constants.dart';
 import 'package:project_files/utils/utils.dart';
 import 'package:provider/provider.dart';
 
@@ -48,14 +53,17 @@ class _ECAppState extends State<ECApp> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => Cart(),
+        create: (context) => CartProvider(),
         builder: (context, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                  primarySwatch: Colors.grey,
-                  primaryColor: Colors.grey[850],
-                  textTheme: GoogleFonts.robotoFlexTextTheme(
-                      Theme.of(context).textTheme)),
+              theme: lightTheme,
+              routes: {
+                NavConstants.onboardingScreen: (context) => OnboardingScreen(),
+                NavConstants.homeScreen: (context) => HomeScreen(),
+                NavConstants.shopScreen: (context) => ShopScreen(),
+                NavConstants.cartScreen: (context) => CartScreen(),
+                NavConstants.aboutScreen: (context) => AboutScreen(),
+              },
               home: OnboardingScreen(),
             ));
   }

@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../models/cart.dart';
-import '../models/shoe_model.dart';
+import '../../models/product_model.dart';
 
 class CartTile extends StatefulWidget {
-  final ShoeModel shoe;
+  final ProductModel shoe;
+  final Function onTap;
 
-  const CartTile({super.key, required this.shoe});
+  const CartTile({super.key, required this.shoe, required this.onTap});
 
   @override
   State<CartTile> createState() => _CartTileState();
 }
 
 class _CartTileState extends State<CartTile> {
-  // Remove shoe from cart
-  void removeFromCart() {
-    Provider.of<Cart>(context, listen: false).removeFromCart(widget.shoe);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +20,8 @@ class _CartTileState extends State<CartTile> {
       child: Container(
         padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-            color: Colors.grey[50], borderRadius: BorderRadius.circular(12)),
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(12)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -66,7 +61,7 @@ class _CartTileState extends State<CartTile> {
             // Delete Button
             IconButton(
               onPressed: () {
-                removeFromCart();
+                widget.onTap();
               },
               icon: Icon(Icons.delete, color: Colors.red),
             )

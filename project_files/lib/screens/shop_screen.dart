@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_files/components/shoe_tile.dart';
+import 'package:project_files/components/dialog_box.dart';
+import 'package:project_files/components/tiles/product_tile.dart';
 import 'package:provider/provider.dart';
 
-import '../models/cart.dart';
-import '../models/shoe_model.dart';
+import '../models/product_model.dart';
+import '../models/providers/cart_provider.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
@@ -14,29 +15,40 @@ class ShopScreen extends StatefulWidget {
 
 class _ShopScreenState extends State<ShopScreen> {
   // Add shoe to cart
-  void addToCart(ShoeModel shoe) {
-    Provider.of<Cart>(context, listen: false).addToCart(shoe);
-
+  void addToCart(ProductModel shoe) {
     // Show alert shoe is added
     showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Shoe Added'),
-              content: Text('Check your cart'),
+        builder: (context) => DialogBox(
+              onLeftTap: () {
+                addItemsToCart(shoe);
+                Navigator.pop(context);
+              },
+              onRightTap: () {
+                Navigator.pop(context);
+              },
+              titleText: 'Want to add to cart?',
+              leftText: 'Add',
+              rightText: 'Cancel',
+              height: 150,
             ));
+  }
+
+  void addItemsToCart(ProductModel shoe) {
+    Provider.of<CartProvider>(context, listen: false).addToCart(shoe);
   }
 
   @override
   Widget build(BuildContext context) {
     // Search UI
-    return Consumer<Cart>(
+    return Consumer<CartProvider>(
         builder: (context, value, child) => ListView(
               children: [
                 Container(
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(horizontal: 25),
                   decoration: BoxDecoration(
-                      color: Colors.grey[50],
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +75,8 @@ class _ShopScreenState extends State<ShopScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 24.0),
                       child: Text('Newest trends for you...',
                           style: TextStyle(
-                              fontSize: 20, color: Colors.grey.shade800)),
+                              fontSize: 20,
+                              color: Theme.of(context).colorScheme.primary)),
                     ),
                   ],
                 ),
@@ -90,12 +103,12 @@ class _ShopScreenState extends State<ShopScreen> {
 
                 // Item Listing
                 SizedBox(
-                  height: 550.0,
+                  height: 530.0,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: value.shoesForSale.length,
                       itemBuilder: (context, index) {
-                        return ShoeTile(
+                        return ProductTile(
                           shoe: value.shoesForSale[index],
                           onTap: () {
                             addToCart(value.shoesForSale[index]);

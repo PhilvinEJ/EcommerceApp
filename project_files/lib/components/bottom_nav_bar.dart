@@ -13,20 +13,21 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 16, bottom: Platform.isAndroid ? 5 : 25),
       child: GNav(
-          color: Colors.grey[400],
-          activeColor: Colors.grey[800],
-          tabActiveBorder: Border.all(color: Colors.white),
-          tabBackgroundColor: Colors.white,
+          color: Theme.of(context).colorScheme.inversePrimary,
+          activeColor: Theme.of(context).colorScheme.primary,
+          tabActiveBorder:
+              Border.all(color: Theme.of(context).colorScheme.secondary),
+          tabBackgroundColor: Theme.of(context).colorScheme.secondary,
           mainAxisAlignment: MainAxisAlignment.center,
           tabBorderRadius: 35.0,
           onTabChange: onTabChange,
           tabs: [
             GButton(
-              icon: Icons.home,
+              icon: Icons.shopping_bag,
               text: 'Shop',
             ),
             GButton(
-              icon: Icons.shopping_bag,
+              icon: Icons.shopping_cart,
               text: 'Cart',
             ),
           ]),

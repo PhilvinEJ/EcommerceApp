@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_files/components/buttons.dart';
+import 'package:project_files/utils/nav_constants.dart';
 import 'package:project_files/utils/utils.dart';
-
-import 'home_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -10,7 +9,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -33,7 +32,9 @@ class OnboardingScreen extends StatelessWidget {
               // Title
               Text(
                 'Check out new Trends.',
-                style: TextStyle(color: Colors.grey[850], fontSize: 18.0),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 18.0),
               ),
 
               SizedBox(
@@ -45,8 +46,7 @@ class OnboardingScreen extends StatelessWidget {
                   text: 'Continue',
                   onTap: () {
                     printLog('Continue Button Pressed');
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushNamed(context, NavConstants.homeScreen);
                   })
             ],
           ),

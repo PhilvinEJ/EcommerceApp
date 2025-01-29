@@ -1,52 +1,52 @@
 import 'package:flutter/cupertino.dart';
-import 'package:project_files/models/shoe_model.dart';
+import 'package:project_files/models/product_model.dart';
 
-class Cart extends ChangeNotifier {
+class CartProvider extends ChangeNotifier {
   //List of shoe for sale
-  List<ShoeModel> shoesForSale = [
-    ShoeModel(
+  List<ProductModel> shoesForSale = [
+    ProductModel(
         name: 'Shoe 1',
         price: '250',
         imagePath: 'lib/assets/images/pic1.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 1'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 2',
         price: '300',
         imagePath: 'lib/assets/images/pic2.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 2'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 3',
         price: '400',
         imagePath: 'lib/assets/images/pic3.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 3'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 4',
         price: '380',
         imagePath: 'lib/assets/images/pic4.jpeg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 4'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 5',
         price: '280',
         imagePath: 'lib/assets/images/pic1.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 5'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 6',
         price: '450',
         imagePath: 'lib/assets/images/pic2.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 6'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 7',
         price: '290',
         imagePath: 'lib/assets/images/pic3.jpg',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Coolest Shoe 7'),
-    ShoeModel(
+    ProductModel(
         name: 'Shoe 8',
         price: '420',
         imagePath: 'lib/assets/images/pic4.jpeg',
@@ -55,21 +55,21 @@ class Cart extends ChangeNotifier {
   ];
 
   // List of shoes in user's cart
-  List<ShoeModel> shoesInCart = [];
+  List<ProductModel> shoesInCart = [];
 
   // Get shoe list
-  List<ShoeModel> getShoes() {
+  List<ProductModel> getShoes() {
     return shoesForSale;
   }
 
   // Add shoe to cart
-  void addToCart(ShoeModel shoe) {
+  void addToCart(ProductModel shoe) {
     shoesInCart.add(shoe);
     notifyListeners();
   }
 
   // Remove shoe from cart
-  void removeFromCart(ShoeModel shoe) {
+  void removeFromCart(ProductModel shoe) {
     shoesInCart.remove(shoe);
     notifyListeners();
   }
